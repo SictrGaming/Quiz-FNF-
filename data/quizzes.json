@@ -1,0 +1,33 @@
+[
+  {
+    "id": "demo-1",
+    "title": "Quiz Demo",
+    "description": "Contoh quiz untuk mencoba website.",
+    "questions": [
+      {
+        "id": "q1",
+        "question": "Berapakah hasil dari 2 + 2?",
+        "audio": null,
+        "options": {
+          "A": "3",
+          "B": "4",
+          "C": "5",
+          "D": "6"
+        },
+        "answer": "B"
+      },
+      {
+        "id": "q2",
+        "question": "Bahasa yang digunakan untuk membuat logika interaktif pada website ini adalah?",
+        "audio": null,
+        "options": {
+          "A": "JavaScript",
+          "B": "PHP",
+          "C": "SQL",
+          "D": "Bash"
+        },
+        "answer": "A"
+      }
+    ]
+  }
+]
