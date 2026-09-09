@@ -1,50 +1,62 @@
 # Quiz Web — JS + JSON
 
-Website quiz murni HTML, CSS, JavaScript, dan JSON.
+Quiz website statis menggunakan HTML, CSS, JavaScript, dan JSON.
 
 ## Fitur
-- Daftar quiz dari JSON
-- Pilihan ganda A–D
-- Skor otomatis
-- Soal dapat memiliki file MP3
-- Admin editor untuk membuat/mengedit data quiz
-- Export JSON dari admin
-- Import JSON
-- Tidak memakai PHP
-- Tidak memakai database
-- Bisa dijalankan sebagai static site
-- Cocok untuk GitHub Pages dan Cloudflare Pages
+- Sistem poin per soal seperti Google Forms
+- Setiap soal dapat memiliki `points`
+- Skor akhir dihitung dari total poin yang diperoleh
+- Pilihan jawapan berupa button/card tanpa radio bulat
+- Pilihan jawapan berada di tengah
+- Sokongan audio MP3
+- Data quiz dikawal manual melalui `data/quizzes.json`
+- Tiada PHP
+- Tiada database
+- Tiada tombol Admin pada halaman utama
+- Sesuai untuk Cloudflare Pages dan GitHub Pages
+
+## Format JSON
+
+Setiap soal mempunyai `points`:
+
+```json
+{
+  "id": "q1",
+  "question": "Berapakah 2 + 2?",
+  "points": 5,
+  "audio": null,
+  "options": {
+    "A": "3",
+    "B": "4",
+    "C": "5",
+    "D": "6"
+  },
+  "answer": "B"
+}
+```
+
+Contoh:
+- Soal 1 = 5 poin
+- Soal 2 = 10 poin
+- Soal 3 = 2 poin
+
+Jika semua benar, maksimum = 17 poin.
 
 ## Menjalankan
 
-Tidak membutuhkan Node.js.
-
-Cara paling mudah:
-1. Buka `index.html` langsung di browser, atau
-2. Gunakan static server seperti VS Code Live Server.
+Boleh terus buka `index.html` atau gunakan VS Code Live Server.
 
 Untuk Cloudflare Pages:
-- Upload repository ini ke GitHub.
-- Buat Cloudflare Pages project.
-- Framework preset: None.
-- Build command: kosong.
-- Output directory: `/`.
-
-## Catatan data
-
-Browser tidak dapat menulis perubahan langsung ke file `data/quizzes.json` yang berada di GitHub/Cloudflare.
-
-Admin menyediakan:
-- editor quiz
-- import JSON
-- export JSON
-
-Setelah membuat/mengubah quiz, klik Export JSON lalu ganti file `data/quizzes.json` dengan hasil export dan commit ke repository.
+- Framework preset: None
+- Build command: kosong
+- Output directory: `/`
 
 ## Audio
 
-Letakkan MP3 di folder `audio/`, kemudian isi field audio pada JSON dengan nama file, contoh:
+Letakkan MP3 dalam folder `audio/` dan isi nama fail pada `audio`, contoh:
 
-`audio: "contoh.mp3"`
+`"audio": "soal-01.mp3"`
 
-Untuk repository publik, perhatikan ukuran file MP3 dan lisensi audio yang digunakan.
+## Catatan
+
+Data quiz sengaja dibuat manual melalui JSON. Admin editor dari versi sebelumnya tidak digunakan pada versi ini.
