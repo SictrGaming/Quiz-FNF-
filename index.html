@@ -4,6 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Quiz Web</title>
+<meta name="description" content="Pilih quiz dan uji pengetahuanmu.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
@@ -12,12 +16,23 @@
 </header>
 <main class="container">
 <section class="hero">
-<p class="eyebrow">ONLINE QUIZ</p>
-<h1>Uji pengetahuanmu.</h1>
-<p>Pilih quiz untuk memulakan.</p>
+<h1>Uji pengetahuanmu, satu quiz sekaligus.</h1>
+<p>Pilih salah satu quiz di bawah untuk mulai. Setiap soal punya poinnya sendiri, jadi jawaban yang lebih sulit bisa lebih berharga.</p>
+<div id="quiz-count" class="tag"></div>
 </section>
-<section id="quiz-list" class="grid"></section>
+<section id="quiz-list" class="grid" aria-live="polite">
+<div class="skeleton-grid">
+<div class="skeleton-card"></div>
+<div class="skeleton-card"></div>
+<div class="skeleton-card"></div>
+</div>
+</section>
 </main>
+<footer class="footer">
+<div class="container footer-inner">
+<span>Quiz Web</span>
+</div>
+</footer>
 <script src="assets/js/app.js"></script>
 </body>
 </html>
