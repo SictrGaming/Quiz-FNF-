@@ -2,11 +2,12 @@
   {
     "id": "demo-1",
     "title": "Quiz Demo",
-    "description": "Contoh quiz untuk mencoba website.",
+    "description": "Contoh quiz dengan sistem poin seperti Google Forms.",
     "questions": [
       {
         "id": "q1",
         "question": "Berapakah hasil dari 2 + 2?",
+        "points": 5,
         "audio": null,
         "options": {
           "A": "3",
@@ -18,7 +19,8 @@
       },
       {
         "id": "q2",
-        "question": "Bahasa yang digunakan untuk membuat logika interaktif pada website ini adalah?",
+        "question": "Bahasa yang digunakan untuk logik interaktif website ini adalah?",
+        "points": 10,
         "audio": null,
         "options": {
           "A": "JavaScript",
