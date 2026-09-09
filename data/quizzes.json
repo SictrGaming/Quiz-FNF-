@@ -1,32 +1,33 @@
 [
   {
-    "id": "demo-1",
-    "title": "Quiz Demo",
-    "description": "Contoh quiz dengan sistem poin seperti Google Forms.",
+    "id": "quiz-1",
+    "title": "FNF' QUIZ",
+    "description": "Untuk mengukur seberapa berpengalaman kamu dalam bermain game FNF'",
     "questions": [
       {
         "id": "q1",
-        "question": "Berapakah hasil dari 2 + 2?",
-        "points": 5,
+        "question": "Apa kepanjangan dari FNF'?",
+        "points": 2,
         "audio": null,
         "options": {
-          "A": "3",
-          "B": "4",
-          "C": "5",
-          "D": "6"
+          "A": "Tidak ada kepanjangan",
+          "B": "Friday Night Fucking",
+          "C": "Friday Night Funkin",
+          "D": "Friday Night Partying",
+          "E": "Friday Night Funkin'"
         },
-        "answer": "B"
+        "answer": "E"
       },
       {
         "id": "q2",
-        "question": "Bahasa yang digunakan untuk logik interaktif website ini adalah?",
-        "points": 10,
+        "question": "Kapan FNF' dirilis?",
+        "points": 2,
         "audio": null,
         "options": {
-          "A": "JavaScript",
-          "B": "PHP",
-          "C": "SQL",
-          "D": "Bash"
+          "A": "2020",
+          "B": "2019",
+          "C": "2021",
+          "D": "2018"
         },
         "answer": "A"
       }
