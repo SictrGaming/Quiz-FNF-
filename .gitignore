@@ -1,0 +1,11 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+
+# Local files
+*.log
+
+# Do not ignore JSON quiz data or audio placeholders
