@@ -4,14 +4,23 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Quiz</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
 <header class="topbar">
 <a class="brand" href="index.html">Quiz Web</a>
+<div class="progress-track" id="progress-track" hidden>
+<div class="progress-fill" id="progress-fill"></div>
+</div>
 </header>
 <main class="container narrow">
-<section id="quiz-header" class="hero compact"></section>
+<section id="quiz-header" class="hero compact">
+<div class="skeleton-line skeleton-line-title"></div>
+<div class="skeleton-line skeleton-line-text"></div>
+</section>
 <form id="quiz-form"></form>
 </main>
 <script src="assets/js/quiz.js"></script>
