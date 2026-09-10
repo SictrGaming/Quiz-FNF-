@@ -66,7 +66,6 @@ ${data.breakdown.map((item,i)=>`
 <span class="rq-points">${item.earnedPoints} / ${item.points} poin</span>
 </div>
 <p>${escapeHtml(item.question)}</p>
-${!item.correct?`<div class="rq-answer">Jawaban benar: <b>${item.correctAnswer?escapeHtml(item.correctAnswer+(item.correctOptionText?'. '+item.correctOptionText:'')):'-'}</b></div>`:''}
 </div>
 </div>`).join('')}
 </div>`;
