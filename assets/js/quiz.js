@@ -43,7 +43,7 @@ async function loadQuiz(){
 <h2>${escapeHtml(q.question)}</h2>
 ${q.audio?`<audio class="audio" controls preload="metadata"><source src="audio/${encodeURIComponent(q.audio)}" type="audio/mpeg"></audio>`:''}
 <div class="options">
-${['A','B','C','D'].filter(k=>q.options&&q.options[k]!=null&&q.options[k]!=='').map(k=>`
+${Object.keys(q.options||{}).filter(k=>q.options[k]!=null&&q.options[k]!=='').map(k=>`
 <label class="option" data-question="${escapeHtml(q.id)}">
 <input type="radio" name="q_${escapeHtml(q.id)}" value="${k}">
 <span class="option-label">${k}. ${escapeHtml(q.options[k])}</span>
@@ -107,8 +107,6 @@ function submitQuiz(event){
       points,
       earnedPoints:correct?points:0,
       selected:answer,
-      correctAnswer:q.answer,
-      correctOptionText:q.options?q.options[q.answer]:null,
       correct
     };
   });
