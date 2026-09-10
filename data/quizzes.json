@@ -30,6 +30,31 @@
           "D": "2018"
         },
         "answer": "A"
+      },
+      {
+        "id": "q2",
+        "question": "Sebutkan Ciri Ciri Whitty!",
+        "points": 2,
+        "audio": null,
+        "options": {
+          "A": "Berbadan Tinggi Dengan wajah yang murka serta kulit bewarna hijau",
+          "B": "Bukan badan manusia dan jago bermain basket serta dia bisa error",
+          "C": "Emosian dan jika marah bisa meledak"
+        },
+        "answer": "C"
+      },
+      {
+        "id": "q2",
+        "question": "Sebutkan Urutan Note!",
+        "points": 2,
+        "audio": null,
+        "options": {
+          "A": "Kanan, Bawah, Atas, Kiri",
+          "B": "Kiri, Atas, Bawah, Kanan",
+          "C": "Atas, Bawah, Kanan, Kiri",
+          "D": "Kiri, Bawah, Atas, Kanan"
+        },
+        "answer": "D"
       }
     ]
   }
