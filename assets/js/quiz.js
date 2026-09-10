@@ -32,6 +32,7 @@ async function loadQuiz(){
     header.innerHTML=`
 <h1>${escapeHtml(currentQuiz.title)}</h1>
 <p>${escapeHtml(currentQuiz.description||'')}</p>
+<p>PERINGATAN!!! INI LINK GITHUB JADI DATA YANG KAMU MASUKKAN TIDAK TERSIMPAN KE RIWAYAT</p>
 <div class="tag">Maksimum ${maxPoints} poin · ${currentQuiz.questions.length} soal</div>`;
 
     form.innerHTML=currentQuiz.questions.map((q,i)=>`
