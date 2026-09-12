@@ -65,9 +65,9 @@
     "questions": [
       {
         "id": "q1",
-        "question": "apa?",
+        "question": "apa??",
         "points": 2,
-        "audio": null,
+        "audio": "https://raw.githubusercontent.com/SictrGaming/Quiz-FNF-/refs/heads/main/audio/Skyfall.ogg",
         "options": {
           "A": "Tidak ada kepanjangan",
           "B": "Friday Night Fucking",
