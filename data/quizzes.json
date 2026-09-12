@@ -57,5 +57,26 @@
         "answer": "D"
       }
     ]
+  },
+  {
+    "id": "quiz-2",
+    "title": "SONG QUIZ",
+    "description": "Untuk mengetahui seberapa banyak lagu yang kamu ketehaui",
+    "questions": [
+      {
+        "id": "q1",
+        "question": "apa?",
+        "points": 2,
+        "audio": null,
+        "options": {
+          "A": "Tidak ada kepanjangan",
+          "B": "Friday Night Fucking",
+          "C": "Friday Night Funkin",
+          "D": "Friday Night Partying",
+          "E": "Friday Night Funkin'"
+        },
+        "answer": "E"
+      }
+    ]
   }
 ]
