@@ -64,7 +64,18 @@ ${Object.keys(q.options||{}).filter(k=>q.options[k]!=null&&q.options[k]!=='').ma
     document.querySelectorAll('audio').forEach(audio=>{
       audio.addEventListener('play',()=>{
         document.querySelectorAll('audio').forEach(other=>{if(other!==audio)other.pause();});
+        Object.keys(ytPlayers).forEach(id=>{if(typeof ytPlayers[id].pauseVideo==='function')ytPlayers[id].pauseVideo();});
       });
+    });
+
+    if(form.querySelector('.yt-audio-mount')){
+      ensureYouTubeApi();
+    }
+    form.addEventListener('click',event=>{
+      const btn=event.target.closest('.audio-toggle');
+      if(!btn)return;
+      event.preventDefault();
+      toggleYouTubeAudio(btn.dataset.target);
     });
 
     progressTrack.hidden=false;
@@ -129,7 +140,11 @@ function renderAudio(raw){
   if(url){
     const youtubeId=extractYouTubeId(url);
     if(youtubeId){
-      return `<div class="media-embed"><iframe width="100%" height="190" src="https://www.youtube-nocookie.com/embed/${youtubeId}" title="Audio" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen loading="lazy"></iframe></div>`;
+      const mountId='yt-'+youtubeId+'-'+Math.random().toString(36).slice(2,8);
+      return `<div class="audio-embed">
+<div class="yt-audio-mount" id="${mountId}" data-video-id="${escapeHtml(youtubeId)}"></div>
+<button type="button" class="button ghost audio-toggle" data-target="${mountId}">▶ Putar audio</button>
+</div>`;
     }
     const spotifyEmbed=extractSpotifyEmbed(url);
     if(spotifyEmbed){
@@ -146,7 +161,7 @@ function renderAudio(raw){
 
 function extractYouTubeId(url){
   const host=url.hostname.replace(/^www\./,'');
-  if(host==='youtube.com'||host==='m.youtube.com'){
+  if(host==='youtube.com'||host==='m.youtube.com'||host==='music.youtube.com'){
     if(url.pathname==='/watch')return url.searchParams.get('v');
     const shorts=url.pathname.match(/^\/shorts\/([\w-]+)/);
     if(shorts)return shorts[1];
@@ -157,6 +172,52 @@ function extractYouTubeId(url){
     return url.pathname.slice(1).split('/')[0]||null;
   }
   return null;
+}
+
+let ytApiLoading=false;
+const ytPlayers={};
+
+function ensureYouTubeApi(){
+  if(window.YT&&window.YT.Player){initYouTubePlayers();return;}
+  if(!ytApiLoading){
+    ytApiLoading=true;
+    const tag=document.createElement('script');
+    tag.src='https://www.youtube.com/iframe_api';
+    document.head.appendChild(tag);
+  }
+  window.onYouTubeIframeAPIReady=initYouTubePlayers;
+}
+
+function initYouTubePlayers(){
+  document.querySelectorAll('.yt-audio-mount:not([data-ready])').forEach(mount=>{
+    mount.setAttribute('data-ready','1');
+    const mountId=mount.id;
+    ytPlayers[mountId]=new YT.Player(mountId,{
+      videoId:mount.dataset.videoId,
+      width:'0',
+      height:'0',
+      playerVars:{controls:0,modestbranding:1,rel:0,disablekb:1,fs:0,playsinline:1},
+      events:{
+        onStateChange:e=>{
+          const btn=document.querySelector(`.audio-toggle[data-target="${mountId}"]`);
+          if(!btn)return;
+          if(e.data===YT.PlayerState.PLAYING)btn.textContent='⏸ Jeda audio';
+          else if(e.data===YT.PlayerState.PAUSED||e.data===YT.PlayerState.ENDED)btn.textContent='▶ Putar audio';
+        }
+      }
+    });
+  });
+}
+
+function toggleYouTubeAudio(mountId){
+  const player=ytPlayers[mountId];
+  if(!player||typeof player.getPlayerState!=='function')return;
+  document.querySelectorAll('audio').forEach(a=>a.pause());
+  Object.keys(ytPlayers).forEach(otherId=>{
+    if(otherId!==mountId&&typeof ytPlayers[otherId].pauseVideo==='function')ytPlayers[otherId].pauseVideo();
+  });
+  if(player.getPlayerState()===YT.PlayerState.PLAYING)player.pauseVideo();
+  else player.playVideo();
 }
 
 function extractSpotifyEmbed(url){
