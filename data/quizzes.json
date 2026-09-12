@@ -69,13 +69,13 @@
         "points": 2,
         "audio": "https://youtu.be/DeumyOzKqgI?si=cQluYEM5ps-nE10t",
         "options": {
-          "A": "Tidak ada kepanjangan",
-          "B": "Friday Night Fucking",
-          "C": "Friday Night Funkin",
-          "D": "Friday Night Partying",
-          "E": "Friday Night Funkin'"
+          "A": "SkyFall",
+          "B": "s",
+          "C": "s",
+          "D": "s",
+          "E": "s"
         },
-        "answer": "E"
+        "answer": "A"
       }
     ]
   }
