@@ -216,7 +216,9 @@ button{font-family:inherit}
 .audio{display:block;width:100%;margin:2px 0 20px}
 .media-embed{margin:2px 0 20px;border-radius:var(--radius-sm);overflow:hidden;line-height:0}
 .media-embed iframe{display:block;border:0;width:100%}
+.audio-toggle{width:auto;display:inline-flex;margin:2px 0 20px;padding:10px 16px;font-size:14px}
 .audio-link{width:auto;display:inline-flex;margin:2px 0 20px;padding:10px 16px;font-size:14px}
+.yt-audio-mount{width:0;height:0;overflow:hidden}
 
 .options{display:grid;gap:10px;max-width:480px;margin:0 auto}
 .option{
