@@ -41,7 +41,7 @@ async function loadQuiz(){
 <div class="points">${Number(q.points)||0} poin</div>
 </div>
 <h2>${escapeHtml(q.question)}</h2>
-${q.audio?`<audio class="audio" controls preload="metadata"><source src="audio/${encodeURIComponent(q.audio)}" type="audio/mpeg"></audio>`:''}
+${q.audio?renderAudio(q.audio):''}
 <div class="options">
 ${Object.keys(q.options||{}).filter(k=>q.options[k]!=null&&q.options[k]!=='').map(k=>`
 <label class="option" data-question="${escapeHtml(q.id)}">
@@ -119,6 +119,52 @@ function submitQuiz(event){
     breakdown
   }));
   location.href='result.html';
+}
+
+function renderAudio(raw){
+  const value=String(raw).trim();
+  let url=null;
+  try{url=new URL(value);}catch(e){url=null;}
+
+  if(url){
+    const youtubeId=extractYouTubeId(url);
+    if(youtubeId){
+      return `<div class="media-embed"><iframe width="100%" height="190" src="https://www.youtube-nocookie.com/embed/${youtubeId}" title="Audio" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen loading="lazy"></iframe></div>`;
+    }
+    const spotifyEmbed=extractSpotifyEmbed(url);
+    if(spotifyEmbed){
+      return `<div class="media-embed"><iframe src="${spotifyEmbed}" width="100%" height="152" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>`;
+    }
+    if(/\.(mp3|wav|ogg|m4a|aac|flac)(\?.*)?$/i.test(url.pathname)){
+      return `<audio class="audio" controls preload="metadata"><source src="${escapeHtml(url.href)}"></audio>`;
+    }
+    return `<a class="button ghost audio-link" href="${escapeHtml(url.href)}" target="_blank" rel="noopener noreferrer">Buka audio ↗</a>`;
+  }
+
+  return `<audio class="audio" controls preload="metadata"><source src="audio/${encodeURIComponent(value)}" type="audio/mpeg"></audio>`;
+}
+
+function extractYouTubeId(url){
+  const host=url.hostname.replace(/^www\./,'');
+  if(host==='youtube.com'||host==='m.youtube.com'){
+    if(url.pathname==='/watch')return url.searchParams.get('v');
+    const shorts=url.pathname.match(/^\/shorts\/([\w-]+)/);
+    if(shorts)return shorts[1];
+    const embed=url.pathname.match(/^\/embed\/([\w-]+)/);
+    if(embed)return embed[1];
+  }
+  if(host==='youtu.be'){
+    return url.pathname.slice(1).split('/')[0]||null;
+  }
+  return null;
+}
+
+function extractSpotifyEmbed(url){
+  const host=url.hostname.replace(/^www\./,'');
+  if(host!=='open.spotify.com')return null;
+  const match=url.pathname.match(/\/(track|episode|album|playlist|show)\/([a-zA-Z0-9]+)/);
+  if(!match)return null;
+  return `https://open.spotify.com/embed/${match[1]}/${match[2]}`;
 }
 
 function escapeHtml(v){
